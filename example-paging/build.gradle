@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+    }
+}
+
+android {
+    compileSdkVersion rootProject.sdkVersion
+
+    defaultConfig {
+        applicationId "com.xwray.groupie.example.paging"
+        minSdkVersion rootProject.minimumSdkVersion
+        targetSdkVersion rootProject.sdkVersion
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation project(':library-paging')
+    implementation project(':library-kotlin-android-extensions')
+    implementation project(':example-shared')
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.paging:paging-runtime-ktx:2.1.0"
+    implementation "android.arch.lifecycle:extensions:2.0.0"
+}

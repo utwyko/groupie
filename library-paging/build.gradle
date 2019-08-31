@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+archivesBaseName = 'groupie-paging'
+
+android {
+    compileSdkVersion rootProject.sdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minimumSdkVersion
+        targetSdkVersion rootProject.sdkVersion
+        versionCode 20
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compileOnly project(':library')
+    compileOnly "androidx.recyclerview:recyclerview:1.0.0"
+    compileOnly "androidx.paging:paging-runtime:2.1.0"
+    compileOnly("androidx.annotation:annotation:1.0.0")
+}
+
+apply from: rootProject.file('release-bintray.gradle')
+
